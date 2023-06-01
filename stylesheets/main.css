@@ -1,0 +1,64 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header {
+  background: black;
+  border-radius: 2rem 2rem 0 0;
+  box-sizing: border-box;
+  color: white;
+  font: bold 2rem monospace;
+  padding: 0.75rem 1.5rem 0.25rem 1.5rem;
+  width: 100%;
+}
+
+main {
+  border-radius: 2rem;
+  border: 0.2rem solid black;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+}
+
+#grid {
+  box-sizing: border-box;
+  border-bottom: 0;
+  border-right: 0;
+  border: 1px solid black;
+  user-select: none;
+  -webkit-user-select: none; /* really? */
+  width: 100%;
+}
+
+#grid>div {
+  border-left: 0;
+  border-top: 0;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+#grid > div.even { background-color: white; }
+#grid > div.odd { background-color: black; }
+#grid > div.visited { background-color: lightgreen; }
+#grid > div.knight { background-color: red; }
+#grid > div.valid-even { background: url('../images/valid_even.svg') white; }
+#grid > div.valid-odd { background: url('../images/valid_odd.svg') black; }
+
+
+/* desktop styles */
+@media (min-width: 768px) and (orientation: landscape) {
+
+  main {
+    padding: 1.5rem;
+    width: 50%;
+  }
+}

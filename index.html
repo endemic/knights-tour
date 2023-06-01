@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knight's Challenge</title>
+
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Tile Puzzle" />
+  <meta property="og:description" content="Waste even moar time on the internets with this tile swap game." />
+  <meta property="og:url" content="https://ganbaru.games/tile_puzzle" />
+  <meta property="og:image" content="https://ganbaru.games/puzzle/images/screenshot.png" />
+  <meta property="og:image:width" content="1008">
+  <meta property="og:image:width" content="1064">
+
+  <script src="scripts/grid.js"></script>
+  <script src="scripts/sona.js"></script>
+  <script src="scripts/game.js"></script>
+
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+
+<body>
+  <main id="game">
+    <header>♘ Knight's Challenge ♞</header>
+    <section id="description">
+      <p>Move a chess knight to each square on the board. You can't move to a square you've already visited!<br>
+        Standard chess movement rules apply. Select any square on the board to start.</p>
+    </section>
+    <section id="high_score">
+      Your high score: <span id="high_score">0</span>
+    </section>
+
+    <section id="grid"></section>
+  </main>
+
+  <script>
+    const sona = new Sona([
+      { url: 'sounds/start.m4a', id: 'click' },
+      { url: 'sounds/tada.m4a', id: 'tada' },
+    ]);
+    sona.load(() => {
+      new Game();
+    });
+  </script>
+</body>
+
+</html>
