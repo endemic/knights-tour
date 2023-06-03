@@ -48,15 +48,20 @@ main {
 
 #grid > div.even { background-color: white; }
 #grid > div.odd { background-color: black; }
-#grid > div.visited { background-color: lightgreen; }
-#grid > div.knight { background-color: red; }
+#grid > div.visited {
+  background: url('../images/background.png') center/4px;
+  image-rendering: pixelated;
+}
+#grid > div.knight-even { background: url('../images/knight_even.png') white center/50% no-repeat; }
+#grid > div.knight-odd { background: url('../images/knight_odd.png') black center/50% no-repeat; }
+
+/* https://css-tricks.com/svg-marching-ants/ */
 #grid > div.valid-even { background: url('../images/valid_even.svg') white; }
 #grid > div.valid-odd { background: url('../images/valid_odd.svg') black; }
 
 
 /* desktop styles */
 @media (min-width: 768px) and (orientation: landscape) {
-
   main {
     padding: 1.5rem;
     width: 50%;

@@ -1,9 +1,10 @@
 const EVEN = 0;
 const ODD = 1;
 const VISITED = 2;
-const KNIGHT = 3;
-const VALID_EVEN = 4;
-const VALID_ODD = 5;
+const KNIGHT_EVEN = 3;
+const KNIGHT_ODD = 4;
+const VALID_EVEN = 5;
+const VALID_ODD = 6;
 
 class Game extends Grid {
   constructor() {
@@ -19,9 +20,10 @@ class Game extends Grid {
         0: 'even',
         1: 'odd',
         2: 'visited',
-        3: 'knight',
-        4: 'valid-even',
-        5: 'valid-odd'
+        3: 'knight-even',
+        4: 'knight-odd',
+        5: 'valid-even',
+        6: 'valid-odd'
     };
 
     // bind context variable to the current Game() object
@@ -71,7 +73,13 @@ class Game extends Grid {
 
     // handle condition for first move -- you can start anywhere
     if (!this.knight) {
-      state[clicked.x][clicked.y] = KNIGHT;
+
+      // display white/black knight based on color of clicked square
+      if (state[clicked.x][clicked.y] === EVEN) {
+        state[clicked.x][clicked.y] = KNIGHT_EVEN;
+      } else {
+        state[clicked.x][clicked.y] = KNIGHT_ODD;
+      }
 
       // set the knight's initial position
       this.knight = clicked;
@@ -104,8 +112,12 @@ class Game extends Grid {
 
         this.score += 1;
 
-        // update display to show new knight position
-        state[this.knight.x][this.knight.y] = KNIGHT;
+      // display white/black knight based on color of clicked square
+      if (state[this.knight.x][this.knight.y] === VALID_EVEN) {
+        state[this.knight.x][this.knight.y] = KNIGHT_EVEN;
+      } else {
+        state[this.knight.x][this.knight.y] = KNIGHT_ODD;
+      }
 
         // re-draw the board background so as to erase the previously-drawn valid moves
         state = this.checkerFill(state);
@@ -164,7 +176,7 @@ class Game extends Grid {
     // check if all squares in the grid are `VISITED` (last square will be the knight)
     for (let x = 0; x < this.columns; x += 1) {
       for (let y = 0; y < this.rows; y += 1) {
-        if (![VISITED, KNIGHT].includes(state[x][y])) {
+        if (![VISITED, KNIGHT_EVEN, KNIGHT_ODD].includes(state[x][y])) {
           won = false;
           break;
         }
