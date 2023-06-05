@@ -1,7 +1,7 @@
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
+  font: 1rem monospace;
 }
 
 body {
@@ -13,20 +13,25 @@ body {
 
 header {
   background: black;
-  border-radius: 2rem 2rem 0 0;
   box-sizing: border-box;
   color: white;
   font: bold 2rem monospace;
-  padding: 0.75rem 1.5rem 0.25rem 1.5rem;
+  padding: 0.75rem;
+  text-align: center;
   width: 100%;
 }
 
 main {
-  border-radius: 2rem;
-  border: 0.2rem solid black;
   box-sizing: border-box;
   padding: 1rem;
   width: 100%;
+}
+
+#meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  align-items: center;
 }
 
 #grid {
@@ -36,6 +41,7 @@ main {
   border: 1px solid black;
   user-select: none;
   -webkit-user-select: none; /* really? */
+  touch-action: manipulation; /* allow pan/zoom, but not double-tap to zoom */
   width: 100%;
 }
 

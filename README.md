@@ -16,6 +16,9 @@ TODO:
 - [x] save high score
 - [x] "u lose" sound effect
 - [x] "new game" button
-- [ ] finalize UI
+- [x] finalize UI
 - [ ] rewrite sona to respond to user input
-- [ ] ask https://multiversal.pl/en/ permission to use knight graphic
+- [x] ask https://multiversal.pl/en/ permission to use knight graphic
+- [ ] create metadata
+
+https://en.wikipedia.org/wiki/Knight%27s_tour

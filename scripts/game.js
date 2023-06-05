@@ -32,10 +32,10 @@ class Game extends Grid {
 
     grid.addEventListener('click', this.onClick.bind(this));
 
-    const restart = document.querySelector('#restart');
-    restart.addEventListener('click', this.restart.bind(this));
+    const reset = document.querySelector('#reset');
+    reset.addEventListener('click', this.reset.bind(this));
 
-    this.restart();
+    this.reset();
   }
 
   checkerFill(grid) {
@@ -50,12 +50,14 @@ class Game extends Grid {
     return grid;
   }
 
-  restart() {
+  reset() {
     // set up initial board state
     let state = this.fill(this.displayStateCopy(), null);
 
     // generate checkered background
     state = this.checkerFill(state);
+
+    this.gameOver = false;
 
     // this ivar will keep track of the knight's current position
     // initially null, as the player must make the first move
