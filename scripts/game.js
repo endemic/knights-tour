@@ -32,19 +32,10 @@ class Game extends Grid {
 
     grid.addEventListener('click', this.onClick.bind(this));
 
-    // set up initial board state
-    let state = this.displayStateCopy();
+    const restart = document.querySelector('#restart');
+    restart.addEventListener('click', this.restart.bind(this));
 
-    // generate checkered background
-    state = this.checkerFill(state);
-
-    // this ivar will keep track of the knight's current position
-    // initially null, as the player must make the first move
-    this.knight = null;
-
-    this.score = 0;
-
-    this.render(state);
+    this.restart();
   }
 
   checkerFill(grid) {
@@ -57,6 +48,25 @@ class Game extends Grid {
     }
 
     return grid;
+  }
+
+  restart() {
+    // set up initial board state
+    let state = this.fill(this.displayStateCopy(), null);
+
+    // generate checkered background
+    state = this.checkerFill(state);
+
+    // this ivar will keep track of the knight's current position
+    // initially null, as the player must make the first move
+    this.knight = null;
+
+    this.score = 0;
+    this.highScore = parseInt(localStorage.getItem('knight:highScore'), 10) || 0;
+
+    this.renderScore();
+
+    this.render(state);
   }
 
   onClick(event) {
@@ -73,7 +83,6 @@ class Game extends Grid {
 
     // handle condition for first move -- you can start anywhere
     if (!this.knight) {
-
       // display white/black knight based on color of clicked square
       if (state[clicked.x][clicked.y] === EVEN) {
         state[clicked.x][clicked.y] = KNIGHT_EVEN;
@@ -96,7 +105,11 @@ class Game extends Grid {
         }
       });
 
+      sona.play('click');
+
       this.score += 1;
+
+      this.renderScore();
 
       this.render(state);
 
@@ -110,14 +123,12 @@ class Game extends Grid {
         // move the knight to the new spot
         this.knight = clicked;
 
-        this.score += 1;
-
-      // display white/black knight based on color of clicked square
-      if (state[this.knight.x][this.knight.y] === VALID_EVEN) {
-        state[this.knight.x][this.knight.y] = KNIGHT_EVEN;
-      } else {
-        state[this.knight.x][this.knight.y] = KNIGHT_ODD;
-      }
+        // display white/black knight based on color of clicked square
+        if (state[this.knight.x][this.knight.y] === VALID_EVEN) {
+          state[this.knight.x][this.knight.y] = KNIGHT_EVEN;
+        } else {
+          state[this.knight.x][this.knight.y] = KNIGHT_ODD;
+        }
 
         // re-draw the board background so as to erase the previously-drawn valid moves
         state = this.checkerFill(state);
@@ -142,8 +153,22 @@ class Game extends Grid {
 
         sona.play('click');
 
+        this.score += 1;
+
+        this.renderScore();
+
         this.render(state);
     }
+  }
+
+  renderScore() {
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      localStorage.setItem('knight:highScore', this.highScore);
+    }
+
+    document.querySelector('#score').textContent = this.score;
+    document.querySelector('#high_score').textContent = this.highScore;
   }
 
   getValidMoves(x, y) {
@@ -185,10 +210,8 @@ class Game extends Grid {
 
     if (won) {
       sona.play('tada');
-
-      alert(`You win! You are the champion!`);
     } else {
-      alert(`You lose! Your score was ${this.score}.`);
+      sona.play('stop');
     }
 
     this.gameOver = true;

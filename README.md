@@ -1,4 +1,4 @@
-# Knight's Challenge
+# Knight's Tour
 
 Learned about this from reading Steve Wozniak's autobiography. He made a hardware version.
 
@@ -12,8 +12,10 @@ after a valid square is clicked, calculate/highlight new valid squares
 
 TODO:
 - [x] create even/odd knight background image
-- [ ] track current score
-- [ ] save high score
-- [ ] "new game" button
-- [ ] "u lose" sound effect
+- [x] track current score
+- [x] save high score
+- [x] "u lose" sound effect
+- [x] "new game" button
+- [ ] finalize UI
 - [ ] rewrite sona to respond to user input
+- [ ] ask https://multiversal.pl/en/ permission to use knight graphic

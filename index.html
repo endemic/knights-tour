@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Knight's Challenge</title>
+  <title>Knight's Tour</title>
 
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,22 +22,29 @@
 
 <body>
   <main id="game">
-    <header>♘ Knight's Challenge ♞</header>
+    <header>♘ Knight's Tour ♞</header>
     <section id="description">
       <p>Move a chess knight to each square on the board. You can't move to a square you've already visited!<br>
         Standard chess movement rules apply. Select any square on the board to start.</p>
     </section>
-    <section id="high_score">
-      Your high score: <span id="high_score">0</span>
+
+    <section>
+      Current score: <span id="score"></span>
     </section>
+    <section>
+      High score: <span id="high_score">0</span>
+    </section>
+
+    <button id="restart">Restart</button>
 
     <section id="grid"></section>
   </main>
 
   <script>
     const sona = new Sona([
-      { url: 'sounds/start.m4a', id: 'click' },
+      { url: 'sounds/click.m4a', id: 'click' },
       { url: 'sounds/tada.m4a', id: 'tada' },
+      { url: 'sounds/stop.m4a', id: 'stop' },
     ]);
     sona.load(() => {
       new Game();
