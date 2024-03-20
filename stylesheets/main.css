@@ -58,8 +58,8 @@ main {
   background: url('../images/background.png') center/4px;
   image-rendering: pixelated;
 }
-#grid > div.knight-even { background: url('../images/knight_even.png') white center/50% no-repeat; }
-#grid > div.knight-odd { background: url('../images/knight_odd.png') black center/50% no-repeat; }
+#grid > div.knight-even { background: url('../images/knight_even.png') white center/90% no-repeat; }
+#grid > div.knight-odd { background: url('../images/knight_odd.png') black center/90% no-repeat; }
 
 /* https://css-tricks.com/svg-marching-ants/ */
 #grid > div.valid-even { background: url('../images/valid_even.svg') white; }
